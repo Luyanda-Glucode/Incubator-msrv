@@ -1,0 +1,81 @@
+openapi: 3.0.0
+info:
+  title: Title
+  description: Title
+  version: 1.0.0
+servers:
+  - url: 'https'
+paths: {
+  "/identityVerificationDetail": {
+    "post": {
+      "tags": [
+        "weatherDetails",
+        "checkInstantId",
+        "dataFromLN"
+      ],
+
+      "operationId": "weatherDetails",
+      "parameters": [
+        {
+          "in": "header",
+          "name": "Authorization",
+          "type": "string",
+          "description": "API Gateway Hosed APIs or Proxies : Client Id and Client encoded in Basic Auth format. API Provider : AFS Token.",
+          "required": true
+        },
+        {
+          "in": "header",
+          "name": "trace-id",
+          "type": "string",
+          "description": "A unique number for every Trace and a 128 bit number encoded as 32 lower-hex characters.",
+          "required": false
+        },
+        {
+          "in": "body",
+          "name": "weatherDetailsRequest",
+          "description": "Weather Request",
+          "required": true,
+          "schema": {
+            "type": "array",
+            "items" : {
+              "$ref": "#/definitions/weather"
+            }
+          }
+        }
+      ],
+      "responses": {
+        "200": {
+          "description": "Message processed successfully.",
+          "schema": {
+            "$ref": "#/definitions/weatherResponsePayLoad"
+          }
+        },
+        "400": {
+          "description": "Bad Request -The server cannot or will not process the request due to an apparent client error (e.g. malformed request syntax, size too large, invalid request framing, or deceptive request routing).",
+          "schema": {
+            "$ref": "#/definitions/serviceError"
+          }
+        },
+        "401": {
+          "description": "Unauthorized. When authentication is required and has failed or has not yet been provided.",
+          "schema": {
+            "$ref": "#/definitions/serviceError"
+          }
+        },
+        "404": {
+          "description": "Not found: The requested resource could not be found but may be available in the future. Subsequent requests by the client are permissible.",
+          "schema": {
+            "$ref": "#/definitions/serviceError"
+          }
+        },
+        "500": {
+          "description": "Internal Server Error: A generic error message, given when an unexpected condition was encountered and no more specific message is sutiable.",
+          "schema": {
+            "$ref": "#/definitions/serviceError"
+          }
+        }
+
+      }
+    }
+  }
+}
