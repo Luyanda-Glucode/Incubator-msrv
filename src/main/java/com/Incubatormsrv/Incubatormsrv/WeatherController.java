@@ -14,8 +14,15 @@ public class WeatherController implements WeatherApi  {
         return null;
     }
 
+    /**
+     * Get weather summery
+     * Async method
+     *
+     * @param body Current weather (required)
+     * @param cb   callback method
+     */
     @Override
-    public void getWeather(WeatherModel body, Callback<WeatherModel> cb) {
+    public void getWeather(WeatherModel body, retrofit.Callback<WeatherModel> cb) {
         try {
             getWeather(body);
         }
@@ -23,4 +30,5 @@ public class WeatherController implements WeatherApi  {
             System.out.println(e.toString());
         }
     }
+
 }
