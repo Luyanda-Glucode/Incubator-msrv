@@ -16,6 +16,11 @@ public class WeatherController implements WeatherApi  {
 
     @Override
     public void getWeather(WeatherModel body, Callback<WeatherModel> cb) {
-
+        try {
+            getWeather(body);
+        }
+        catch(Exception e) {
+            System.out.println(e.toString());
+        }
     }
 }
