@@ -48,6 +48,7 @@
 			<artifactId>converter-gson</artifactId>
 			<version>2.3.0</version>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.annotation</groupId>
 			<artifactId>javax.annotation-api</artifactId>
@@ -58,7 +59,6 @@
 			<artifactId>swagger-models</artifactId>
 			<version>2.2.8</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -67,7 +67,6 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-
 			<plugin>
 				<groupId>io.swagger</groupId>
 				<artifactId>swagger-codegen-maven-plugin</artifactId>
