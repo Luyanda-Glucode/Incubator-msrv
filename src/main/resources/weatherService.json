@@ -59,7 +59,10 @@
         ],
         "responses": {
           "200": {
-            "description": "OK response"
+            "description": "OK response",
+            "schema": {
+              "$ref": "#/definitions/weatherModel"
+            }
           },
           "405": {
             "description": "Invalid input"
