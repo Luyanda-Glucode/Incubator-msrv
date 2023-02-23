@@ -58,6 +58,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK response"
+          },
           "405": {
             "description": "Invalid input"
           }
