@@ -1,0 +1,60 @@
+swagger: '2.0'
+info:
+  description: Showing current weather
+  version: '0.1'
+  title: Current weather
+tags:
+  - name: superhero
+host: localhost:8080
+basePath: /api/v2
+schemes:
+  - http
+paths:
+  /currentWeather:
+    get:
+      tags:
+        - currentWeather
+      produces:
+        - application/json
+      parameters:
+        - name: q
+          in: query
+          required: true
+          type: string
+          x-example: Pretoria
+        - name: num_of_days
+          in: query
+          required: true
+          type: string
+          x-example: '7'
+        - name: format
+          in: query
+          required: true
+          type: string
+          x-example: json
+        - name: key
+          in: query
+          required: true
+          type: string
+          x-example: 44e29137982b4899be752116232202
+      responses:
+        '200':
+          description: Ok, successful
+          schema:
+            $ref: '#/definitions/currentWeather'
+definitions:
+  currentWeather:
+    type: object
+    properties:
+      query:
+        type: string
+      observation_time:
+        type: string
+      temp_C:
+        type: string
+      temp_F:
+        type: string
+      weatherIconUrl:
+        type: string
+      weatherDesc:
+        type: string

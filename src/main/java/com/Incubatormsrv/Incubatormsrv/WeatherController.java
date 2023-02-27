@@ -1,34 +1,17 @@
 package com.Incubatormsrv.Incubatormsrv;
 
-import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.handler.WeatherApi;
-import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.WeatherModel;
+import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.handler.CurrentWeatherApi;
+import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.CurrentWeather;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.security.auth.callback.Callback;
 
 @RestController
-public class WeatherController implements WeatherApi  {
+public class WeatherController implements CurrentWeatherApi {
 
     @Override
-    public WeatherModel getWeather(WeatherModel body) {
-        return null;
+    public ResponseEntity<CurrentWeather> currentWeatherGet(String q, String numOfDays, String format, String key) {
+        return CurrentWeatherApi.super.currentWeatherGet(q, numOfDays, format, key);
     }
-
-    /**
-     * Get weather summery
-     * Async method
-     *
-     * @param body Current weather (required)
-     * @param cb   callback method
-     */
-    @Override
-    public void getWeather(WeatherModel body, retrofit.Callback<WeatherModel> cb) {
-        try {
-            getWeather(body);
-        }
-        catch(Exception e) {
-            System.out.println(e.toString());
-        }
-    }
-
 }
