@@ -1,4 +1,4 @@
-package com.Incubatormsrv.Incubatormsrv;
+package com.Incubatormsrv.Incubatormsrv.HelloWorld;
 
 public class HelloWorldModel {
     private String name;
