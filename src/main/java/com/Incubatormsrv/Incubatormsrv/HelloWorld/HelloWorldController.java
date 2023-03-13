@@ -1,4 +1,4 @@
-package com.Incubatormsrv.Incubatormsrv;
+package com.Incubatormsrv.Incubatormsrv.HelloWorld;
 
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.api.HelloWorldApi;
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.HelloWorld;

@@ -1,0 +1,184 @@
+swagger: '2.0'
+info:
+  description: Current weather connditions
+  version: '0.1'
+  title: Weather
+host: gateway.marvel.com
+basePath: /v1/public
+schemes:
+  - https
+tags:
+  - Weather
+paths:
+  /premium/v1/weather.ashx:
+    get:
+      tags:
+        - Weather
+      produces:
+        - application/json
+      parameters:
+        - name: q
+          in: query
+          required: true
+          type: string
+          x-example: Pretoria
+        - name: num_of_days
+          in: query
+          required: true
+          type: string
+          x-example: '7'
+        - name: format
+          in: query
+          required: true
+          type: string
+          x-example: json
+        - name: key
+          in: query
+          required: true
+          type: string
+          x-example: 44e29137982b4899be752116232202
+      responses:
+        '200':
+          description: OK Success
+          schema:
+            $ref: '#/definitions/weather'
+definitions:
+  weather:
+    type: object
+    properties:
+      data:
+        type: object
+        properties:
+        request:
+          type: object
+          properties:
+          query:
+            type: string
+        current_condition:
+          type: object
+          properties:
+          observation_time:
+            type: string
+          temp_C:
+            type: string
+          temp_F:
+            type: string
+          weatherCode:
+            type: string
+          weatherIconUrl:
+            - value:
+              type: string
+          weatherDesc:
+            - value:
+              type: string
+          windspeedMiles:
+            type: string
+          windspeedKmph:
+            type: string
+          winddirDegree:
+            type: string
+          winddir16Point:
+            type: string
+          precipMM:
+            type: string
+          precipInches:
+            type: string
+          humidity:
+            type: string
+          visibility:
+            type: string
+          visibilityMiles:
+            type: string
+          pressure:
+            type: string
+          pressureInches:
+            type: string
+          cloudcover:
+            type: string
+          FeelsLikeC:
+            type: string
+          FeelsLikeF:
+            type: string
+          uvIndex:
+            type: string
+        weather:
+          type: object
+          properties:
+          date:
+            type: string
+          astronomy:
+            type: object
+            properties:
+            sunrise:
+              type: string
+            sunset:
+              type: string
+            moonrise:
+              type: string
+            moonset:
+              type: string
+            moon_phase:
+              type: string
+            moon_illumination:
+              type: string
+          maxtempC:
+            type: string
+          maxtempF:
+            type: string
+          mintempC:
+            type: string
+          mintempF:
+            type: string
+          avgtempC:
+            type: string
+          avgtempF:
+            type: string
+          totalSnow_cm:
+            type: string
+          sunHour:
+            type: string
+          uvIndex:
+            type: string
+          hourly:
+            type: object
+            properties:
+            time:
+              type: string
+            tempC:
+              type: string
+            tempF:
+              type: string
+            windspeedMiles:
+              type: string
+            windspeedKmph:
+              type: string
+            winddirDegree:
+              type: string
+            winddir16Point:
+              type: string
+            weatherCode:
+              type: string
+            weatherIconUrl:
+              type: object
+              properties:
+              value:
+                type: string
+            weatherDesc:
+              type: object
+              properties:
+              value:
+                type: string
+            precipMM:
+              type: string
+            precipInches:
+              type: string
+            humidity:
+              type: string
+            visibility:
+              type: string
+            visibilityMiles:
+              type: string
+            pressureInches:
+              type: string
+            cloudcover:
+              type: string
