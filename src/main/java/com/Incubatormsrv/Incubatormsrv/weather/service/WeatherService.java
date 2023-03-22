@@ -8,15 +8,13 @@ import org.springframework.stereotype.Component;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-import java.io.IOException;
-
 @Component
-public class weatherService {
+public class WeatherService {
 
     private final String baseUrl;
     private final String key;
     private final String host;
-    public weatherService(@Value("${weather.X-RapidAPI-Key}") String key,
+    public WeatherService(@Value("${weather.X-RapidAPI-Key}") String key,
                           @Value("${weather.X-RapidAPI-Host}") String host,
                           @Value("${weather.baseUrl}") String baseUrl){
         this.key = key;

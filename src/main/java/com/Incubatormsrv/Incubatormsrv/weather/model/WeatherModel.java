@@ -1,6 +1,6 @@
 package com.Incubatormsrv.Incubatormsrv.weather.model;
 
-public class weatherModel {
+public class WeatherModel {
     private  String name;
     private String region;
     private String country;
