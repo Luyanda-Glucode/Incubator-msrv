@@ -18,6 +18,15 @@ paths:
         - helloWorld
       produces:
         - application/json
+      parameters:
+        - in: query
+          name: limit
+          type: number
+          required: false
+        - in: query
+          name: breed_ids
+          type: string
+          required: false
       responses:
         '200':
           description: Ok, successful

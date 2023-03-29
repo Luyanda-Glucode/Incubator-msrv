@@ -55,9 +55,15 @@ public class CatsService {
         return httpClient;
     }
     @Cacheable("WeatherResponse")
-    public TheCatsResponse getWeather() throws IOException {
-        Response<TheCatsResponse> response = catsApi.catsGet(limit,breed_ids).execute();
+    public TheCatsResponse getCats(BigDecimal limit, String breed_ids) throws IOException {
 
+        if (limit != null ) {
+            limit = this.limit;
+        }
+        if (breed_ids != null ) {
+            breed_ids = this.breed_ids;
+        }
+        Response<TheCatsResponse> response = catsApi.catsGet(limit,breed_ids).execute();
         if (response.isSuccessful()) {
             return response.body();
         }else{
