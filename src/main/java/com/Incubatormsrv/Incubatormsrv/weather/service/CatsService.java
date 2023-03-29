@@ -1,31 +1,37 @@
 package com.Incubatormsrv.Incubatormsrv.weather.service;
 
-import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.api.WeatherApi;
-import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.WeatherResponse;
+import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.api.CatsApi;
+import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.TheCatsResponse;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 
 @Component
-public class WeatherService {
+public class CatsService {
 
     private final String baseUrl;
     private final String key;
-    private final String host;
-    private WeatherApi weatherApi;
-    public WeatherService(@Value("${weather.X-RapidAPI-Key}") String key,
-                          @Value("${weather.X-RapidAPI-Host}") String host,
-                          @Value("${weather.baseUrl}") String baseUrl){
+    private final BigDecimal limit;
+    private final String breed_ids;
+    private final CatsApi catsApi;
+
+    public CatsService(@Value("${cats.X-RapidAPI-Key}") String key,
+                       @Value("${cats.limit}") BigDecimal limit,
+                       @Value("${cats.breed_ids}") String breed_ids,
+                       @Value("${cats.baseUrl}") String baseUrl){
         this.key = key;
         this.baseUrl = baseUrl;
-        this.host = host;
-        this.weatherApi = retrofit().create(WeatherApi.class);
+        this.limit = limit;
+        this.breed_ids = breed_ids;
+        this.catsApi = retrofit().create(CatsApi.class);
     }
 
     private Retrofit retrofit() {
@@ -42,16 +48,22 @@ public class WeatherService {
         httpClient.addInterceptor(chain -> {
             Request.Builder request = chain.request().newBuilder();
             request.header("X-RapidAPI-Key", key);
-            request.header("X-RapidAPI-Host", host);
+            request.header("limit", String.valueOf(limit));
             return chain.proceed(request.build());
         });
 
         return httpClient;
     }
+    @Cacheable("TheCatsResponse")
+    public TheCatsResponse getCats(BigDecimal limit, String breed_ids) throws IOException {
 
-    public WeatherResponse getWeather() throws IOException {
-        Response<WeatherResponse> response = weatherApi.weatherGet().execute();
-
+        if (limit != null ) {
+            limit = this.limit;
+        }
+        if (breed_ids != null ) {
+            breed_ids = this.breed_ids;
+        }
+        Response<TheCatsResponse> response = catsApi.catsGet(limit,breed_ids).execute();
         if (response.isSuccessful()) {
             return response.body();
         }else{
