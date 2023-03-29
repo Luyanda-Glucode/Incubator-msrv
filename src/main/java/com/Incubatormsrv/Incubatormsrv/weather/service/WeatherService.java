@@ -5,6 +5,7 @@ import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.WeatherR
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -48,7 +49,7 @@ public class WeatherService {
 
         return httpClient;
     }
-
+    @Cacheable("WeatherResponse")
     public WeatherResponse getWeather() throws IOException {
         Response<WeatherResponse> response = weatherApi.weatherGet().execute();
 
