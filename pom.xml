@@ -136,7 +136,7 @@
 							<goal>generate</goal>
 						</goals>
 						<configuration>
-							<inputSpec>${project.basedir}/src/main/resources/weather.yaml</inputSpec>
+							<inputSpec>${project.basedir}/src/main/resources/cats.yaml</inputSpec>
 							<language>java</language>
 							<apiPackage>${project.basedir}.api</apiPackage>
 							<modelPackage>${project.basedir}.model</modelPackage>

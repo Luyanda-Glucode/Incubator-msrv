@@ -2,9 +2,9 @@ package com.Incubatormsrv.Incubatormsrv.HelloWorld;
 
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.api.HelloWorldApi;
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.HelloWorld;
-import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.WeatherResponse;
-import com.Incubatormsrv.Incubatormsrv.weather.mapper.WeatherMapper;
-import com.Incubatormsrv.Incubatormsrv.weather.service.WeatherService;
+import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.TheCatsResponse;
+import com.Incubatormsrv.Incubatormsrv.weather.mapper.CatsMapper;
+import com.Incubatormsrv.Incubatormsrv.weather.service.CatsService;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,13 +16,13 @@ import java.io.IOException;
 @RestController
 public class HelloWorldController implements HelloWorldApi {
 
-    private final WeatherService weatherService;
-    private final WeatherMapper weatherMapper;
+    private final CatsService catsService;
+    private final CatsMapper catsMapper;
 
-    HelloWorldController(WeatherService weatherService,
-                         WeatherMapper weatherMapper) {
-        this.weatherMapper = weatherMapper;
-        this.weatherService = weatherService;
+    HelloWorldController(CatsService catsService,
+                         CatsMapper catsMapper) {
+        this.catsMapper = catsMapper;
+        this.catsService = catsService;
     }
 
     @GetMapping(value = "/helloWorld")
@@ -37,14 +37,14 @@ public class HelloWorldController implements HelloWorldApi {
 
     @Override
     public ResponseEntity<HelloWorld> getText() throws IOException {
-        WeatherResponse response;
+        TheCatsResponse response;
         try {
-            response = weatherService.getWeather();
+            response = catsService.getWeather();
         } catch (Exception e) {
             throw new IOException(e.getMessage());
         }
 
-        var weather = weatherMapper.helloWorldMapper(response);
+        var weather = catsMapper.helloWorldMapper(response);
 
         return ResponseEntity.ok(weather);
     }

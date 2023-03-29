@@ -1,9 +1,8 @@
-weather:
-    baseUrl: https://weatherapi-com.p.rapidapi.com/current.json?q=Pretoria
-    X-RapidAPI-Key: "733d6caf44msh8e51dbcede9e0f8p1b2b12jsne27ab69a884c"
-    X-RapidAPI-Host: weatherapi-com.p.rapidapi.com
-
-    items-per-page: 10
+cats:
+    baseUrl: https://api.thecatapi.com/v1/images/search
+    x-api-key: live_vzOdl14dU8CHv3FzcUR7mWvYminA8q09RfEpGn8ilc3hgDbJ3MDlmZjcgXRAdZ6h
+    limit: 10
+    breed_ids: beng
     validity-time: 5
 
 spring:
