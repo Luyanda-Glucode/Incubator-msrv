@@ -54,7 +54,7 @@ public class CatsService {
 
         return httpClient;
     }
-    @Cacheable("WeatherResponse")
+    @Cacheable("TheCatsResponse")
     public TheCatsResponse getCats(BigDecimal limit, String breed_ids) throws IOException {
 
         if (limit != null ) {
