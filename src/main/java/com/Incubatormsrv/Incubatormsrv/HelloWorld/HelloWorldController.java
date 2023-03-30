@@ -44,7 +44,7 @@ public class HelloWorldController implements HelloWorldApi {
             throw new IOException(e.getMessage());
         }
 
-        var weather = weatherMapper.helloWorldMapper(response);
+        var weather = weatherMapper.WeatherModelMapper(response);
 
         return ResponseEntity.ok(weather);
     }

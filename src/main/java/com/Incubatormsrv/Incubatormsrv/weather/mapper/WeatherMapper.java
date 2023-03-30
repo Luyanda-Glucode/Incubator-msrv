@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class WeatherMapper {
-
-    public HelloWorld helloWorldMapper(WeatherResponse weatherResponse) {
+    public HelloWorld WeatherModelMapper(WeatherResponse weatherResponse) {
         HelloWorld helloWorld = new HelloWorld();
         helloWorld.setName(weatherResponse.getLocation().getName());
         return helloWorld;
