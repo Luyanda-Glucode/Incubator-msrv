@@ -21,6 +21,7 @@ public class WeatherService {
     private final String host;
     private WeatherApi weatherApi;
     private final Retrofit.Builder builder;
+    private final OkHttpClient.Builder httpClient;
     private final SpringFoxConfig springFoxConfig;
     public WeatherService(@Value("${weather.X-RapidAPI-Key}") String key,
                           @Value("${weather.X-RapidAPI-Host}") String host,
@@ -29,12 +30,11 @@ public class WeatherService {
         this.baseUrl = baseUrl;
         this.host = host;
         this.springFoxConfig = new SpringFoxConfig();
-        this.builder = springFoxConfig.retrofit(baseUrl).newBuilder().client(httpClient().build());
-        this.weatherApi = springFoxConfig.retrofit(baseUrl).create(WeatherApi.class);
+        this.httpClient = new OkHttpClient.Builder();
+        this.builder = springFoxConfig.retrofit(baseUrl, httpClient).newBuilder().client(httpClient().build());
+        this.weatherApi = springFoxConfig.retrofit(baseUrl, httpClient).create(WeatherApi.class);
     }
     private OkHttpClient.Builder httpClient() {
-        OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
-
         httpClient.addInterceptor(chain -> {
             Request.Builder request = chain.request().newBuilder();
             request.header("X-RapidAPI-Key", key);
