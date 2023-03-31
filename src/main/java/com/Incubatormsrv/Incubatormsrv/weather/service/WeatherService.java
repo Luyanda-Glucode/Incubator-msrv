@@ -2,6 +2,7 @@ package com.Incubatormsrv.Incubatormsrv.weather.service;
 
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.api.WeatherApi;
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.WeatherResponse;
+import com.Incubatormsrv.Incubatormsrv.SpringFoxConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,23 +20,18 @@ public class WeatherService {
     private final String key;
     private final String host;
     private WeatherApi weatherApi;
+    private final Retrofit.Builder builder;
+    private final SpringFoxConfig springFoxConfig;
     public WeatherService(@Value("${weather.X-RapidAPI-Key}") String key,
                           @Value("${weather.X-RapidAPI-Host}") String host,
                           @Value("${weather.baseUrl}") String baseUrl){
         this.key = key;
         this.baseUrl = baseUrl;
         this.host = host;
-        this.weatherApi = retrofit().create(WeatherApi.class);
+        this.springFoxConfig = new SpringFoxConfig();
+        this.builder = springFoxConfig.retrofit(baseUrl).newBuilder().client(httpClient().build());
+        this.weatherApi = springFoxConfig.retrofit(baseUrl).create(WeatherApi.class);
     }
-
-    private Retrofit retrofit() {
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(httpClient().build())
-                .build();
-    }
-
     private OkHttpClient.Builder httpClient() {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
