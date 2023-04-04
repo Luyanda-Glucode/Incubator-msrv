@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import java.net.http.HttpClient;
 @Configuration
 public class ApplicationClientConfig {
-@Bean
+    @Bean
     public OkHttpClient.Builder httpClient(@Value("${weather.X-RapidAPI-Key}") String key,
                                            @Value("${weather.X-RapidAPI-Host}") String host) {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();

@@ -3,6 +3,7 @@ package com.Incubatormsrv.Incubatormsrv.CurrentWeather;
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.api.CurrentWeatherApi;
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.CurrentWeatherResponse;
 import _Users_luyanda_glucode.com_Documents_GitHub_Incubator_msrv.model.WeatherResponse;
+import com.Incubatormsrv.Incubatormsrv.weather.WeatherApiException;
 import com.Incubatormsrv.Incubatormsrv.weather.mapper.WeatherMapper;
 import com.Incubatormsrv.Incubatormsrv.weather.service.WeatherService;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class CurrentWeatherController implements CurrentWeatherApi {
         try {
             response = weatherService.getWeather();
         } catch (Exception e) {
-            throw new IOException(e.getMessage());
+            throw new WeatherApiException(e.getMessage());
         }
         var weather = weatherMapper.WeatherModelMapper(response);
         return ResponseEntity.ok(weather);
