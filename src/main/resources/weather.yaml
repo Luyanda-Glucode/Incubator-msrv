@@ -1,6 +1,6 @@
 swagger: '2.0'
 info:
-  description: Current weather conditions
+  description: Weather conditions
   version: '0.1'
   title: Weather
 host: weatherapi-com.p.rapidapi.com

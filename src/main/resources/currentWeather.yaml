@@ -1,0 +1,31 @@
+swagger: '2.0'
+info:
+  description: Current weather conditions
+  version: '0.1'
+  title: Current Weather
+tags:
+  - name: CurrentWeather
+host: localhost:8080
+basePath: /api/v2
+paths:
+  /CurrentWeather:
+    get:
+      tags:
+        - CurrentWeatherController
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK Success
+          schema:
+            $ref: '#/definitions/CurrentWeatherResponse'
+definitions:
+  CurrentWeatherResponse:
+    type: object
+    properties:
+      name:
+        type: string
+      description:
+        type: string
+      imageUri:
+        type: string

@@ -40,11 +40,4 @@ public class SpringFoxConfig {
         registry.addRedirectViewController("/docApi/v2/api-docs","/v2/api-docs");
         registry.addViewController("/HelloWorld").setViewName("HelloWorld");
     }
-    public Retrofit retrofit(String baseUrl, OkHttpClient.Builder okHttpClient) {
-        return new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okHttpClient.build())
-                .build();
-    }
 }
