@@ -1,0 +1,56 @@
+swagger: '2.0'
+info:
+  description: Weather conditions
+  version: '0.1'
+  title: Weather
+host: weatherapi-com.p.rapidapi.com
+tags:
+  - name: Weather
+security:
+  ApiKey:
+    type: apiKey
+    in: query
+    name: apikey
+paths:
+  /weather:
+    get:
+      tags:
+        - Weather
+      produces:
+        - application/json
+      responses:
+        '200':
+          description: OK Success
+          schema:
+            $ref: '#/definitions/weatherResponse'
+definitions:
+  weatherResponse:
+    type: object
+    properties:
+      location:
+        type: object
+        properties:
+          name:
+            type: string
+          region:
+            type: string
+          country:
+            type: string
+          localtime:
+            type: string
+      current:
+        type: object
+        properties:
+          temp_c:
+            type: string
+          temp_f:
+            type: string
+          last_updated:
+            type: string
+          condition:
+            type: object
+            properties:
+              text:
+                type: string
+              icon:
+                type: string
