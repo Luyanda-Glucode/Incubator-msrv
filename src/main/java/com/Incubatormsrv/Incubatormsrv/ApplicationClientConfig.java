@@ -10,13 +10,11 @@ import java.net.http.HttpClient;
 @Configuration
 public class ApplicationClientConfig {
     @Bean
-    public OkHttpClient.Builder httpClient(@Value("${weather.X-RapidAPI-Key}") String key,
-                                           @Value("${weather.X-RapidAPI-Host}") String host) {
+    public OkHttpClient.Builder httpClient(@Value("${weather.Key}") String key) {
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
         httpClient.addInterceptor(chain -> {
             Request.Builder request = chain.request().newBuilder();
-            request.header("X-RapidAPI-Key", key);
-            request.header("X-RapidAPI-Host", host);
+            request.header("Key", key);
             return chain.proceed(request.build());
         });
         return httpClient;

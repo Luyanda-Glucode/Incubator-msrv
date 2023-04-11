@@ -3,7 +3,7 @@ info:
   description: Weather conditions
   version: '0.1'
   title: Weather
-host: weatherapi-com.p.rapidapi.com
+host: api.worldweatheronline.com
 tags:
   - name: Weather
 security:
@@ -18,6 +18,19 @@ paths:
         - Weather
       produces:
         - application/json
+      parameters:
+        - in: query
+          name: q
+          type: string
+          required: true
+        - in: query
+          name: format
+          type: string
+          required: true
+        - in: query
+          name: num_of_days
+          type: number
+          required: true
       responses:
         '200':
           description: OK Success
@@ -27,30 +40,50 @@ definitions:
   weatherResponse:
     type: object
     properties:
-      location:
+      data:
         type: object
         properties:
-          name:
-            type: string
-          region:
-            type: string
-          country:
-            type: string
-          localtime:
-            type: string
-      current:
-        type: object
-        properties:
-          temp_c:
-            type: string
-          temp_f:
-            type: string
-          last_updated:
-            type: string
-          condition:
-            type: object
-            properties:
-              text:
-                type: string
-              icon:
-                type: string
+          request:
+            type: array
+            items:
+              properties:
+                type:
+                  type: string
+                query:
+                  type: string
+          current_condition:
+            type: array
+            items:
+              properties:
+                observation_time:
+                  type: string
+                temp_C:
+                  type: string
+                temp_F:
+                  type: string
+                weatherIconUrl:
+                  type: array
+                  items:
+                    properties:
+                      value:
+                        type: string
+                weatherDesc:
+                  type: array
+                  items:
+                    properties:
+                      value:
+                        type: string
+          weather:
+            type: array
+            items:
+              properties:
+                date:
+                  type: string
+                maxtempC:
+                  type: string
+                maxtempF:
+                  type: string
+                mintempC:
+                  type: string
+                mintempF:
+                  type: string
