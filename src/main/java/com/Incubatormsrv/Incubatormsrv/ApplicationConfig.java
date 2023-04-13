@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Configuration
 public class ApplicationConfig {
     @Bean
-    public WeatherApi retrofit(@Value("${weather.X-RapidAPI-Key}") String baseUrl, OkHttpClient.Builder okHttpClient) {
+    public WeatherApi retrofit(@Value("${weather.baseUrl}") String baseUrl, OkHttpClient.Builder okHttpClient) {
 
         return new Retrofit.Builder()
                 .baseUrl(baseUrl)

@@ -14,6 +14,15 @@ paths:
         - CurrentWeatherController
       produces:
         - application/json
+      parameters:
+        - in: query
+          name: cityName
+          type: string
+          required: true
+        - in: query
+          name: num_of_days
+          type: number
+          required: true
       responses:
         '200':
           description: OK Success

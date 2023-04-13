@@ -1,7 +1,9 @@
 weather:
-    baseUrl: https://weatherapi-com.p.rapidapi.com/current.json?q=Pretoria
-    X-RapidAPI-Key: "733d6caf44msh8e51dbcede9e0f8p1b2b12jsne27ab69a884c"
-    X-RapidAPI-Host: weatherapi-com.p.rapidapi.com
-
-
-
+    baseUrl: https://api.worldweatheronline.com/premium/v1/weather.ashx
+    Key: "44e29137982b4899be752116232202"
+    format: json
+    validity-time: 5
+debug: true
+spring:
+    profiles:
+        active: "develop"
