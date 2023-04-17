@@ -1,0 +1,118 @@
+{
+  "data": {
+    "request": [
+      {
+        "type": "City",
+        "query": "Pretoria, South Africa"
+      }
+    ],
+    "current_condition": [
+      {
+        "observation_time": "11:29 AM",
+        "temp_C": "25",
+        "temp_F": "77",
+        "weatherCode": "113",
+        "weatherIconUrl": [
+          {
+            "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"
+          }
+        ],
+        "weatherDesc": [
+          {
+            "value": "Sunny"
+          }
+        ],
+        "windspeedMiles": "13",
+        "windspeedKmph": "20",
+        "winddirDegree": "310",
+        "winddir16Point": "NW",
+        "precipMM": "0.0",
+        "precipInches": "0.0",
+        "humidity": "41",
+        "visibility": "10",
+        "visibilityMiles": "6",
+        "pressure": "1019",
+        "pressureInches": "30",
+        "cloudcover": "0",
+        "FeelsLikeC": "25",
+        "FeelsLikeF": "77",
+        "uvIndex": "7"
+      }
+    ],
+    "weather": [
+      {
+        "date": "2023-04-13",
+        "astronomy": [
+          {
+            "sunrise": "06:21 AM",
+            "sunset": "05:54 PM",
+            "moonrise": "No moonrise",
+            "moonset": "01:26 PM",
+            "moon_phase": "Last Quarter",
+            "moon_illumination": "54"
+          }
+        ],
+        "maxtempC": "30",
+        "maxtempF": "86",
+        "mintempC": "16",
+        "mintempF": "60",
+        "avgtempC": "22",
+        "avgtempF": "71",
+        "totalSnow_cm": "0.0",
+        "sunHour": "11.0",
+        "uvIndex": "6",
+        "hourly": [
+          {
+            "time": "0",
+            "tempC": "19",
+            "tempF": "65",
+            "windspeedMiles": "2",
+            "windspeedKmph": "3",
+            "winddirDegree": "20",
+            "winddir16Point": "NNE",
+            "weatherCode": "113",
+            "weatherIconUrl": [
+              {
+                "value": "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0008_clear_sky_night.png"
+              }
+            ],
+            "weatherDesc": [
+              {
+                "value": "Clear"
+              }
+            ],
+            "precipMM": "0.0",
+            "precipInches": "0.0",
+            "humidity": "46",
+            "visibility": "10",
+            "visibilityMiles": "6",
+            "pressure": "1014",
+            "pressureInches": "30",
+            "cloudcover": "4",
+            "HeatIndexC": "19",
+            "HeatIndexF": "65",
+            "DewPointC": "7",
+            "DewPointF": "44",
+            "WindChillC": "19",
+            "WindChillF": "65",
+            "WindGustMiles": "4",
+            "WindGustKmph": "6",
+            "FeelsLikeC": "19",
+            "FeelsLikeF": "65",
+            "chanceofrain": "0",
+            "chanceofremdry": "84",
+            "chanceofwindy": "0",
+            "chanceofovercast": "0",
+            "chanceofsunshine": "94",
+            "chanceoffrost": "0",
+            "chanceofhightemp": "0",
+            "chanceoffog": "0",
+            "chanceofsnow": "0",
+            "chanceofthunder": "0",
+            "uvIndex": "1"
+          }
+        ]
+      }
+    ]
+  }
+}
