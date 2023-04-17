@@ -95,7 +95,7 @@ class IncubatorMsrvApplicationTests {
 	void test_weather_with_filter_number_of_days() throws IOException, ExecutionException, InterruptedException {
 		WeatherResponse weatherResponseMocked = new WeatherResponse();
 
-		File jsonFile = new File("src/test/java/mocks/weather.json");
+		File jsonFile = new File("src/test/java/mocks/weatherFilter.json");
 		String Path = jsonFile.getAbsolutePath();
 		String jsonFileData = FileUtils.readFileToString(jsonFile,"UTF-8");
 
@@ -103,16 +103,16 @@ class IncubatorMsrvApplicationTests {
 		WeatherResponse mockedWeatherResponse = objectMapper.readValue(jsonFileData, WeatherResponse.class);
 
 		weatherResponseMocked = new Gson().fromJson(jsonFileData,WeatherResponse.class);
-		weatherService.getWeather("Pretoria", BigDecimal.valueOf(7));
-		Mockito.verify(weatherService.getWeather("Pretoria", BigDecimal.valueOf(7)));
+		weatherService.getWeather("Pretoria", BigDecimal.valueOf(4));
+		Mockito.verify(weatherService.getWeather("Pretoria", BigDecimal.valueOf(4)));
 		assertNull(weatherService.getWeather("Pretoria", BigDecimal.valueOf(7)));
 
-		Mockito.when(weatherService.getWeather("Pretoria", BigDecimal.valueOf(7))).thenReturn(weatherResponseMocked);
-		assertEquals(weatherResponseMocked,weatherService.getWeather("Pretoria", BigDecimal.valueOf(7)));
+		Mockito.when(weatherService.getWeather("Pretoria", BigDecimal.valueOf(4))).thenReturn(weatherResponseMocked);
+		assertEquals(weatherResponseMocked,weatherService.getWeather("Pretoria", BigDecimal.valueOf(4)));
 
 		CurrentWeatherController currentWeatherController1 = new CurrentWeatherController(weatherService, weatherMapper, threadExecutor);
 
-		ResponseEntity<CurrentWeatherResponse> response = currentWeatherController1.currentWeatherGet("Pretoria", BigDecimal.valueOf(7));
+		ResponseEntity<CurrentWeatherResponse> response = currentWeatherController1.currentWeatherGet("Pretoria", BigDecimal.valueOf(4));
 		CurrentWeatherResponse currentWeatherResponse = weatherMapper.WeatherModelMapper(mockedWeatherResponse);
 
 		assertEquals(response.getStatusCode(), HttpStatus.OK);
@@ -122,7 +122,7 @@ class IncubatorMsrvApplicationTests {
 	@Test
 	public void testCurrentWeatherGet_Success() throws Exception {
 		String cityName = "Pretoria";
-		BigDecimal numOfDays = BigDecimal.valueOf(3);
+		BigDecimal numOfDays = BigDecimal.valueOf(4);
 		WeatherResponse weatherResponse = new WeatherResponse();
 		CurrentWeatherResponse currentWeatherResponse = new CurrentWeatherResponse();
 		CompletableFuture<WeatherResponse> completableFuture = CompletableFuture.completedFuture(weatherResponse);
@@ -145,7 +145,7 @@ class IncubatorMsrvApplicationTests {
 	@Test
 	public void testCurrentWeatherGet_Exception() throws Exception {
 		String cityName = "Pretoria";
-		BigDecimal numOfDays = BigDecimal.valueOf(3);
+		BigDecimal numOfDays = BigDecimal.valueOf(4);
 		WeatherApiException weatherApiException = new WeatherApiException("An error occurred while getting weather data");
 
 		Mockito.when(weatherService.getWeather(cityName, numOfDays)).thenThrow(weatherApiException);
@@ -173,11 +173,11 @@ class IncubatorMsrvApplicationTests {
 		wireMock.stubFor(get(urlPathMatching("/weather"))
 				.withQueryParam("q", equalTo("Pretoria"))
 				.withQueryParam("format", equalTo("json"))
-				.withQueryParam("num_of_days", equalTo(String.valueOf(BigDecimal.valueOf(3))))
+				.withQueryParam("num_of_days", equalTo(String.valueOf(BigDecimal.valueOf(4))))
 				.willReturn(aResponse()));
 
-		doReturn(response).when(weatherApi).weatherGet("Pretoria", "json",  BigDecimal.valueOf(3));
-		WeatherResponse result = weatherService.getWeather("Pretoria", BigDecimal.valueOf(3));
+		doReturn(response).when(weatherApi).weatherGet("Pretoria", "json",  BigDecimal.valueOf(4));
+		WeatherResponse result = weatherService.getWeather("Pretoria", BigDecimal.valueOf(4));
 
 		Assert.assertEquals(weatherResponseMocked, result);
 	}
@@ -190,11 +190,11 @@ class IncubatorMsrvApplicationTests {
 		wireMock.stubFor(get(urlPathMatching("/weather"))
 				.withQueryParam("q", equalTo("Pretoria"))
 				.withQueryParam("format", equalTo("json"))
-				.withQueryParam("num_of_days", equalTo(String.valueOf(BigDecimal.valueOf(3))))
+				.withQueryParam("num_of_days", equalTo(String.valueOf(BigDecimal.valueOf(4))))
 				.willReturn(aResponse().withStatus(400).withBody(errorMessage)));
 
-		doReturn(response).when(weatherApi).weatherGet("Pretoria", "json",  BigDecimal.valueOf(3));
-		Exception exception = Assert.assertThrows(IOException.class, () -> weatherService.getWeather("Pretoria", BigDecimal.valueOf(3)));
+		doReturn(response).when(weatherApi).weatherGet("Pretoria", "json",  BigDecimal.valueOf(4));
+		Exception exception = Assert.assertThrows(IOException.class, () -> weatherService.getWeather("Pretoria", BigDecimal.valueOf(4)));
 		Assert.assertEquals(errorMessage, exception.getMessage());
 	}
 	@After
