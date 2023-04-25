@@ -62,6 +62,8 @@ class IncubatorMsrvApplicationTests {
 	private static WeatherMapper weatherMapper;
 	@Autowired
 	static WeatherService weatherService;
+	@Autowired
+	WeatherApi weatherApi;
 	@BeforeAll
 	static void setup(){
 		weatherMapper = new WeatherMapper();
@@ -71,7 +73,6 @@ class IncubatorMsrvApplicationTests {
 	public void teardown() {
 		wireMock.stop();
 	}
-	private WeatherApi weatherApi;
 	@Test
 	void test_getWeather_mock() throws IOException, ExecutionException, InterruptedException {
 
