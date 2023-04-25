@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class wireMockConfig {
     @Bean
-    @Before
     public WireMockServer wireMockServer (@Value("${wireMockPort}") int wireMockPort){
         WireMockServer wireMock = new WireMockServer(wireMockPort);
         wireMock.start();

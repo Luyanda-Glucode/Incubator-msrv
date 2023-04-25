@@ -52,21 +52,25 @@ import static org.mockito.Mockito.doReturn;
 @RunWith(MockitoJUnitRunner.class)
 @SpringBootTest
 class IncubatorMsrvApplicationTests {
-	@Mock
+	@Autowired
 	ThreadExecutor threadExecutor;
-	@Mock
+	@Autowired
 	CurrentWeatherController currentWeatherController;
-	@Mock
+	@Autowired
 	WireMockServer wireMock;
-	@InjectMocks
+	@Autowired
 	private static WeatherMapper weatherMapper;
+	@Autowired
 	static WeatherService weatherService;
 	@BeforeAll
 	static void setup(){
 		weatherMapper = new WeatherMapper();
 		weatherService  = Mockito.mock(WeatherService.class);
 	}
-
+	@After
+	public void teardown() {
+		wireMock.stop();
+	}
 	private WeatherApi weatherApi;
 	@Test
 	void test_getWeather_mock() throws IOException, ExecutionException, InterruptedException {
@@ -197,8 +201,5 @@ class IncubatorMsrvApplicationTests {
 		Exception exception = Assert.assertThrows(IOException.class, () -> weatherService.getWeather("Pretoria", BigDecimal.valueOf(4)));
 		Assert.assertEquals(errorMessage, exception.getMessage());
 	}
-	@After
-	public void teardown() {
-		wireMock.stop();
-	}
+
 }
