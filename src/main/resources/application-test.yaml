@@ -3,3 +3,4 @@ spring:
     activate:
       on-profile: test
 noOfThreads: 5
+wireMockPort: 8085
