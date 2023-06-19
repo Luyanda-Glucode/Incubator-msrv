@@ -1,0 +1,89 @@
+swagger: '2.0'
+info:
+  description: Weather conditions
+  version: '0.1'
+  title: Weather
+host: api.worldweatheronline.com
+tags:
+  - name: Weather
+security:
+  ApiKey:
+    type: apiKey
+    in: query
+    name: apikey
+paths:
+  /weather:
+    get:
+      tags:
+        - Weather
+      produces:
+        - application/json
+      parameters:
+        - in: query
+          name: q
+          type: string
+          required: true
+        - in: query
+          name: format
+          type: string
+          required: true
+        - in: query
+          name: num_of_days
+          type: number
+          required: true
+      responses:
+        '200':
+          description: OK Success
+          schema:
+            $ref: '#/definitions/weatherResponse'
+definitions:
+  weatherResponse:
+    type: object
+    properties:
+      data:
+        type: object
+        properties:
+          request:
+            type: array
+            items:
+              properties:
+                type:
+                  type: string
+                query:
+                  type: string
+          current_condition:
+            type: array
+            items:
+              properties:
+                observation_time:
+                  type: string
+                temp_C:
+                  type: string
+                temp_F:
+                  type: string
+                weatherIconUrl:
+                  type: array
+                  items:
+                    properties:
+                      value:
+                        type: string
+                weatherDesc:
+                  type: array
+                  items:
+                    properties:
+                      value:
+                        type: string
+          weather:
+            type: array
+            items:
+              properties:
+                date:
+                  type: string
+                maxtempC:
+                  type: string
+                maxtempF:
+                  type: string
+                mintempC:
+                  type: string
+                mintempF:
+                  type: string

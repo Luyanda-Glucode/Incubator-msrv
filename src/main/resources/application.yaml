@@ -1,0 +1,9 @@
+weather:
+    baseUrl: https://api.worldweatheronline.com/premium/v1/weather.ashx
+    Key: "44e29137982b4899be752116232202"
+    format: json
+    validity-time: 5
+debug: true
+spring:
+    profiles:
+        active: "develop"
